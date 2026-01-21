@@ -1,2 +1,3 @@
 # Library-management-system
-Library Management System using Python
+Day 1:
+- Implemented menu-driven program structure
