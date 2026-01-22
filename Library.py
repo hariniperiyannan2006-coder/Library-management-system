@@ -7,11 +7,26 @@ def show_menu():
     print("\n===== Library Management System =====")
     print("1. Add Book")
     print("2. View Books")
-    print("3. Exit")
+    print("3. Search Book")
+    print("4. Exit")
+def search_book():
+    search_name = input("Enter book name to search: ")
+    found = False
+    for book in books:
+        if book["name"].lower() == search_name.lower():
+            print(
+                f"Book Found → ID: {book['id']}, "
+                f"Author: {book['author']}, "
+                f"Status: {book['status']}"
+            )
+            found = True
+            break
+    if not found:
+        print("Book not found.")
 
 while True:
     show_menu()
-    choice = input("Enter your choice (1-3): ")
+    choice = input("Enter your choice (1-4): ")
 
     if choice == "1":
         print("\n--- Add Book ---")
@@ -43,8 +58,13 @@ while True:
                 )
 
     elif choice == "3":
+        print("\n--- Search Book ---")
+        search_book()
+
+    elif choice == "4":
         print("Exiting the program. Thank you!")
         break
 
     else:
-        print("Invalid choice. Please enter 1, 2, or 3.")
+        print("Invalid choice. Please enter 1, 2, 3 or 4.")
+        
