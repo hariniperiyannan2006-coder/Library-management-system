@@ -8,7 +8,9 @@ def show_menu():
     print("1. Add Book")
     print("2. View Books")
     print("3. Search Book")
-    print("4. Exit")
+    print("4. Issue Book")
+    print("5. Return Book")
+    print("6. Exit")
 def search_book():
     search_name = input("Enter book name to search: ")
     found = False
@@ -23,10 +25,34 @@ def search_book():
             break
     if not found:
         print("Book not found.")
+def issue_book():
+    book_id = input("Enter Book ID to issue: ")
+    for book in books:
+        if book["id"] == book_id:
+            if book["status"] == "Available":
+                book["status"] = "Issued"
+                print("Book issued successfully.")
+            else:
+                print("Book is already issued.")
+            return
+    print("Book ID not found.")
+
+
+def return_book():
+    book_id = input("Enter Book ID to return: ")
+    for book in books:
+        if book["id"] == book_id:
+            if book["status"] == "Issued":
+                book["status"] = "Available"
+                print("Book returned successfully.")
+            else:
+                print("Book was not issued.")
+            return
+    print("Book ID not found.")
 
 while True:
     show_menu()
-    choice = input("Enter your choice (1-4): ")
+    choice = input("Enter your choice (1-6): ")
 
     if choice == "1":
         print("\n--- Add Book ---")
@@ -62,9 +88,18 @@ while True:
         search_book()
 
     elif choice == "4":
+        print("\n--- Issue Book ---")
+        issue_book()
+
+    elif choice == "5":
+        print("\n--- Return Book ---")
+        return_book()
+
+    elif choice == "6":
         print("Exiting the program. Thank you!")
         break
-
-    else:
-        print("Invalid choice. Please enter 1, 2, 3 or 4.")
         
+    else:
+        print("Invalid choice. Please enter 1 to 6.")
+        
+
