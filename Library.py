@@ -11,6 +11,25 @@ def show_menu():
     print("4. Issue Book")
     print("5. Return Book")
     print("6. Exit")
+def load_books():
+    try:
+        with open("library_data.txt", "r") as file:
+            for line in file:
+                id, name, author, status = line.strip().split(",")
+                books.append({
+                    "id": id,
+                    "name": name,
+                    "author": author,
+                    "status": status
+                })
+    except FileNotFoundError:
+        pass
+def save_books():
+    with open("library_data.txt", "w") as file:
+        for book in books:
+            file.write(
+                f"{book['id']},{book['name']},{book['author']},{book['status']}\n"
+            )   
 def search_book():
     search_name = input("Enter book name to search: ")
     found = False
@@ -31,25 +50,25 @@ def issue_book():
         if book["id"] == book_id:
             if book["status"] == "Available":
                 book["status"] = "Issued"
+                save_books()
                 print("Book issued successfully.")
             else:
                 print("Book is already issued.")
             return
     print("Book ID not found.")
-
-
 def return_book():
     book_id = input("Enter Book ID to return: ")
     for book in books:
         if book["id"] == book_id:
             if book["status"] == "Issued":
                 book["status"] = "Available"
+                save_books()
                 print("Book returned successfully.")
             else:
                 print("Book was not issued.")
             return
     print("Book ID not found.")
-
+load_books()
 while True:
     show_menu()
     choice = input("Enter your choice (1-6): ")
@@ -68,6 +87,7 @@ while True:
         }
 
         books.append(book)
+        save_books()
         print("Book added successfully!")
 
     elif choice == "2":
@@ -102,4 +122,5 @@ while True:
     else:
         print("Invalid choice. Please enter 1 to 6.")
         
+
 
