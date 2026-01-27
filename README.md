@@ -13,6 +13,7 @@ and search for books by name.
 - View all books
 - Search books by name (case-insensitive)
 - Menu-driven console application
+- Persistent data storage using file handling
 
 ## Technologies Used
 - Python 3
