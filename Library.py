@@ -10,7 +10,8 @@ def show_menu():
     print("3. Search Book")
     print("4. Issue Book")
     print("5. Return Book")
-    print("6. Exit")
+    print("6. Delete Book")
+    print("7. Exit")
 def load_books():
     try:
         with open("library_data.txt", "r") as file:
@@ -56,6 +57,16 @@ def issue_book():
                 print("Book is already issued.")
             return
     print("Book ID not found.")
+def delete_book():
+    book_id = input("Enter Book ID to delete: ")
+
+    for book in books:
+        if book["id"] == book_id:
+            books.remove(book)
+            save_books()
+            print("Book deleted successfully.")
+            return
+    print("Book ID not found.")
 def return_book():
     book_id = input("Enter Book ID to return: ")
     for book in books:
@@ -71,7 +82,7 @@ def return_book():
 load_books()
 while True:
     show_menu()
-    choice = input("Enter your choice (1-6): ")
+    choice = input("Enter your choice (1-7): ")
 
     if choice == "1":
         print("\n--- Add Book ---")
@@ -116,11 +127,16 @@ while True:
         return_book()
 
     elif choice == "6":
-        print("Exiting the program. Thank you!")
-        break
+         print("\n--- Delete Book ---")
+         delete_book()
+
+    elif choice == "7":
+         print("Exiting the program. Thank you!")
+         break
         
     else:
-        print("Invalid choice. Please enter 1 to 6.")
+        print("Invalid choice. Please enter 1 to 7.")
         
+
 
 
