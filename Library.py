@@ -1,6 +1,4 @@
-## Library Management System
-# Day 2: Add Book Feature
-
+# Console-Based Library Management System
 books = []  # List to store book details
 
 def show_menu():
@@ -13,6 +11,7 @@ def show_menu():
     print("6. Delete Book")
     print("7. Exit")
 def load_books():
+    books clear()  
     try:
         with open("library_data.txt", "r") as file:
             for line in file:
@@ -137,6 +136,7 @@ while True:
     else:
         print("Invalid choice. Please enter 1 to 7.")
         
+
 
 
 
