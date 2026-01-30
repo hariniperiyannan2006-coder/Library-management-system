@@ -1,5 +1,7 @@
 # Console-Based Library Management System
+
 books = []  # List to store book details
+
 
 def show_menu():
     print("\n===== Library Management System =====")
@@ -10,40 +12,48 @@ def show_menu():
     print("5. Return Book")
     print("6. Delete Book")
     print("7. Exit")
+
+
 def load_books():
-    books clear()  
+    books.clear()  # Prevent duplicate loading
     try:
         with open("library_data.txt", "r") as file:
             for line in file:
-                id, name, author, status = line.strip().split(",")
+                book_id, name, author, status = line.strip().split(",")
                 books.append({
-                    "id": id,
+                    "id": book_id,
                     "name": name,
                     "author": author,
                     "status": status
                 })
     except FileNotFoundError:
         pass
+
+
 def save_books():
     with open("library_data.txt", "w") as file:
         for book in books:
             file.write(
                 f"{book['id']},{book['name']},{book['author']},{book['status']}\n"
-            )   
+            )
+
+
 def search_book():
     search_name = input("Enter book name to search: ")
     found = False
     for book in books:
         if book["name"].lower() == search_name.lower():
             print(
-                f"Book Found → ID: {book['id']}, "
-                f"Author: {book['author']}, "
+                f"Book Found → ID: {book['id']} | "
+                f"Author: {book['author']} | "
                 f"Status: {book['status']}"
             )
             found = True
             break
     if not found:
         print("Book not found.")
+
+
 def issue_book():
     book_id = input("Enter Book ID to issue: ")
     for book in books:
@@ -56,16 +66,8 @@ def issue_book():
                 print("Book is already issued.")
             return
     print("Book ID not found.")
-def delete_book():
-    book_id = input("Enter Book ID to delete: ")
 
-    for book in books:
-        if book["id"] == book_id:
-            books.remove(book)
-            save_books()
-            print("Book deleted successfully.")
-            return
-    print("Book ID not found.")
+
 def return_book():
     book_id = input("Enter Book ID to return: ")
     for book in books:
@@ -78,7 +80,23 @@ def return_book():
                 print("Book was not issued.")
             return
     print("Book ID not found.")
+
+
+def delete_book():
+    book_id = input("Enter Book ID to delete: ")
+    for book in books:
+        if book["id"] == book_id:
+            books.remove(book)
+            save_books()
+            print("Book deleted successfully.")
+            return
+    print("Book ID not found.")
+
+
+# Load books once when program starts
 load_books()
+
+# Main menu loop
 while True:
     show_menu()
     choice = input("Enter your choice (1-7): ")
@@ -126,17 +144,12 @@ while True:
         return_book()
 
     elif choice == "6":
-         print("\n--- Delete Book ---")
-         delete_book()
+        print("\n--- Delete Book ---")
+        delete_book()
 
     elif choice == "7":
-         print("Exiting the program. Thank you!")
-         break
-        
+        print("Exiting the program. Thank you!")
+        break
+
     else:
-        print("Invalid choice. Please enter 1 to 7.")
-        
-
-
-
-
+        print("Invalid choice. Please enter a number from 1 to 7.")
