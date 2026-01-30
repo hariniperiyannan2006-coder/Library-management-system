@@ -1,36 +1,42 @@
 # Library Management System (Python)
 
-This is a console-based Library Management System developed using Python.
-It allows users to manage books by adding, viewing, and searching them.
-
 ## Description
-The project simulates basic library operations.
-Users can add new books with details, view all available books,
-and search for books by name.
+This is a console-based Library Management System built using Python.
+It allows users to manage books in a library efficiently.
 
 ## Features
-- Add book details (ID, name, author)
+- Add new books
 - View all books
-- Search books by name (case-insensitive)
-- Menu-driven console application
-- Persistent data storage using file handling
+- Search books by name
+- Issue books
+- Return issued books
+- Delete books
+- Save and load data using file handling
 
 ## Technologies Used
 - Python 3
+- File Handling (Text File)
 - GitHub
 
-## How to Run
-1. Download the Python file
-2. Open terminal / command prompt
-3. Run:
-   python library.py
+## Project Structure
+Library-Management-System/
+├── library_management.py
+├── library_data.txt
+└── README.md
 
-## Learning Outcome
+## How to Run
+1. Download or clone the repository
+2. Open terminal / command prompt
+3. Navigate to project folder
+4. Run:
+   python library_management.py
+
+## Learning Outcomes
 - Python functions
 - Lists and dictionaries
-- Conditional statements
-- Loops
-- User input handling
+- File handling
+- Menu-driven programs
+- Real-world project structure
 
 ## Author
 Harini Periyannan
